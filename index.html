@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header>
+      <h1>Rock Paper Scissors</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div>
+          <h2 class="player">You:</h2>
+          <img src="" alt="A question mark" />
+        </div>
+        <div class="scores">
+          <h2 class="scores-diplay">Scores</h2>
+          <h3>
+            <span class="player-score">0</span>
+            <span class="score-seperator">-</span>
+            <span class="computer-score">0</span>
+          </h3>
+        </div>
+        <div>
+          <h2 class="computer">Computer:</h2>
+          <img src="" alt="A question mark" />
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="btn paper-btn">Paper</button>
+        <button class="btn scissors-btn">Scissors</button>
+        <button class="btn rock-btn">Rock</button>
+      </div>
+      <button class="btn hidden" id="play-again-btn">Play Again</button>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

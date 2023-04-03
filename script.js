@@ -24,92 +24,126 @@ const paper = 1;
 const scissors = 2;
 const rock = 3;
 let scoreArr = [0, 0];
+let playing = true;
 
 // Storing score in array
 let playerScore = scoreArr[0];
 let computerScore = scoreArr[1];
 
-document.querySelector(".paper-btn").addEventListener("click", function () {
-  //   Random number generator between 1-3
-  const randomNumber = Math.trunc(Math.random() * 3) + 1;
-
-  // If paper vs paper
-  if (randomNumber === 1) {
-    result.classList.remove("hidden");
-    result.textContent = "DRAW!";
-  }
-  //   Paper loses to Scissors
-  else if (randomNumber === 2) {
-    result.classList.remove("hidden");
-    result.textContent = "Computer Wins!";
-    document.querySelector(".computer-score").textContent = computerScore += 1;
-  }
-  //   Paper beats Rock
-  else {
-    result.classList.remove("hidden");
-    result.textContent = "You Win!";
-    document.querySelector(".player-score").textContent = playerScore += 1;
-  }
-  // Winner is decided whena side reaches 3
+// Deciding winner function
+const isWinner = function () {
   if (playerScore === 3) {
-    console.log("Congratulation, you won!");
+    document.querySelector(".play-again-btn").classList.remove("hidden");
+    playing = false;
+    result.classList.add("hidden");
+    document.querySelector(".winner").classList.remove("hidden");
   } else if (computerScore === 3) {
-    console.log("You lost to the computer");
+    document.querySelector(".play-again-btn").classList.remove("hidden");
+    playing = false;
+    result.classList.add("hidden");
+    document.querySelector(".loser").classList.remove("hidden");
+  }
+};
+// function is the random number and user decisin match
+const isDraw = function () {
+  result.classList.remove("hidden");
+  result.textContent = "DRAW!";
+};
+
+// function when computer hand beats user hand
+const pointComputer = function () {
+  result.classList.remove("hidden");
+  result.textContent = "Computer Wins!";
+  document.querySelector(".computer-score").textContent = computerScore += 1;
+};
+
+// function when user hand beats computer hand
+const pointPlayer = function () {
+  result.classList.remove("hidden");
+  result.textContent = "You Win!";
+  document.querySelector(".player-score").textContent = playerScore += 1;
+};
+
+// reset the game function
+function reset() {
+  document.querySelector(".play-again-btn").classList.add("hidden");
+  playing = true;
+  document.querySelector(".player-score").textContent = 0;
+  document.querySelector(".computer-score").textContent = 0;
+  document.querySelector(".winner").classList.add("hidden");
+  document.querySelector(".loser").classList.add("hidden");
+  playerScore = 0;
+  computerScore = 0;
+}
+
+document.querySelector(".paper-btn").addEventListener("click", function () {
+  if (playing) {
+    //   Random number generator between 1-3
+    const randomNumber = Math.trunc(Math.random() * 3) + 1;
+
+    // If paper vs paper
+    if (randomNumber === 1) {
+      isDraw();
+    }
+
+    //   Paper loses to Scissors
+    else if (randomNumber === 2) {
+      pointComputer();
+      isWinner();
+    }
+
+    //   Paper beats Rock
+    else {
+      pointPlayer();
+      isWinner();
+    }
   }
 });
 
 document.querySelector(".scissors-btn").addEventListener("click", function () {
-  //   Random number generator between 1-3
-  const randomNumber = Math.trunc(Math.random() * 3) + 1;
-  //   If scissors vs scissors
-  if (randomNumber === 2) {
-    result.classList.remove("hidden");
-    result.textContent = "DRAW!";
-  }
-  //  Scissors loses to rock
-  else if (randomNumber === 3) {
-    result.classList.remove("hidden");
-    result.textContent = "Computer Wins!";
-    document.querySelector(".computer-score").textContent = computerScore += 1;
-  }
-  //   Scissors beats paper
-  else {
-    result.classList.remove("hidden");
-    result.textContent = "You Win!";
-    document.querySelector(".player-score").textContent = playerScore += 1;
-  }
-  // Winner is decided whena side reaches 3
-  if (playerScore === 3) {
-    console.log("Congratulation, you won!");
-  } else if (computerScore === 3) {
-    console.log("You lost to the computer");
+  if (playing) {
+    //   Random number generator between 1-3
+    const randomNumber = Math.trunc(Math.random() * 3) + 1;
+    //   If scissors vs scissors
+    if (randomNumber === 2) {
+      isDraw();
+    }
+    //  Scissors loses to rock
+    else if (randomNumber === 3) {
+      pointComputer();
+      isWinner();
+    }
+    //   Scissors beats paper
+    else {
+      pointPlayer();
+      isWinner();
+    }
   }
 });
 
 document.querySelector(".rock-btn").addEventListener("click", function () {
-  //   Random number generator between 1-3
-  const randomNumber = Math.trunc(Math.random() * 3) + 1;
-  //   If rock vs rock
-  if (randomNumber === 3) {
-    result.classList.remove("hidden");
-    result.textContent = "DRAW!";
-  }
-  //  Rock loses to paper
-  else if (randomNumber === 1) {
-    result.classList.remove("hidden");
-    result.textContent = "Computer Wins!";
-    document.querySelector(".computer-score").textContent = computerScore += 1;
-  }
-  //   Rock beats scissors
-  else {
-    result.classList.remove("hidden");
-    result.textContent = "You Win!";
-    document.querySelector(".player-score").textContent = playerScore += 1;
-  }
-  // Winner is decided whena side reaches 3
-  if (playerScore === 3) {
-    console.log("Congratulation, you won!");
-  } else if (computerScore === 3) {
-    console.log("You lost to the computer");
+  if (playing) {
+    //   Random number generator between 1-3
+    const randomNumber = Math.trunc(Math.random() * 3) + 1;
+    //   If rock vs rock
+    if (randomNumber === 3) {
+      isDraw();
+    }
+    //  Rock loses to paper
+    else if (randomNumber === 1) {
+      pointComputer();
+      isWinner();
+    }
+    //   Rock beats scissors
+    else {
+      pointPlayer();
+      isWinner();
+    }
   }
 });
+
+document
+  .querySelector(".play-again-btn")
+  .addEventListener("click", function () {
+    reset();
+  });

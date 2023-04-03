@@ -12,29 +12,29 @@
       <h1>Rock Paper Scissors</h1>
     </header>
     <main>
-      <div class="container">
+      <section class="game">
         <div>
-          <h2 class="player">You:</h2>
-          <img src="" alt="A question mark" />
+          <h2 class="player player-title">You:</h2>
+          <img src="images/question-mark.svg" alt="A question mark" />
         </div>
         <div class="scores">
-          <h2 class="scores-diplay">Scores</h2>
+          <h2 class="scores-display">SCORE</h2>
           <h3>
-            <span class="player-score">0</span>
-            <span class="score-seperator">-</span>
-            <span class="computer-score">0</span>
+            <span class="numeral-score player-score">0</span>
+            <span class="numeral-score score-seperator">-</span>
+            <span class="numeral-score computer-score">0</span>
           </h3>
         </div>
         <div>
-          <h2 class="computer">Computer:</h2>
-          <img src="" alt="A question mark" />
+          <h2 class="player-title computer">Computer:</h2>
+          <img src="images/question-mark.svg" alt="A question mark" />
         </div>
-      </div>
-      <div class="buttons">
+      </section>
+      <section class="buttons">
         <button class="btn paper-btn">Paper</button>
         <button class="btn scissors-btn">Scissors</button>
-        <button class="btn rock-btn">Rock</button>
-      </div>
+        <button class="btn">Rock</button>
+      </section>
       <button class="btn hidden" id="play-again-btn">Play Again</button>
     </main>
     <script src="script.js"></script>
